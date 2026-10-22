@@ -24,7 +24,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.example.pertemuan6.R
 
@@ -46,57 +45,70 @@ fun FormIsian(
         }
     ) { isiRuang ->
         Column(
-            modifier = Modifier.padding(isiRuang),
+            modifier = Modifier
+                .padding(isiRuang)
+                .fillMaxWidth(),
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+            // 1. Input Nama Lengkap
             OutlinedTextField(
                 value = "",
                 onValueChange = {},
                 singleLine = true,
                 modifier = Modifier
-                    .padding(top = 20.dp)
-                    .width(250.dp),
+                    .padding(top = 40.dp)
+                    .width(280.dp),
                 label = { Text(text = "Nama Lengkap") }
             )
-            HorizontalDivider(
-                modifier = Modifier
-                    .padding(20.dp)
-                    .width(250.dp),
-                thickness = Thickness, color = Color.Red)
-            Row{
-                jenisK.forEach {
-                        item ->
-                    Row(verticalAlignment = Alignment.CenterVertically){
+
+            Spacer(modifier = Modifier.height(20.dp))
+
+            // 2. Baris Pilihan Jenis Kelamin (Hanya perulangan RadioButton di sini)
+            Row(
+                modifier = Modifier.width(280.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                jenisK.forEach { item ->
+                    Row(verticalAlignment = Alignment.CenterVertically) {
                         RadioButton(
-                            selected = false,
-                            onClick = {item}
+                            selected = false, // Status klik belum diaktifkan
+                            onClick = { /* TODO: state */ }
                         )
-                        Text(text=item)
-                    }
-                    HorizontalDivider(modifier = Modifier
-                        .padding(all = 20.dp)
-                        .width(250.dp),
-                        thickness = 1.dp,
-                        color = Color.Red
-                    )
-                    OutlinedTextField(
-                        value = "",
-                        singleLine = true,
-                        modifier = Modifier
-                            .width(250.dp),
-                        label = {Text(text = "Alamat")},
-                        onValueChange = {},
-                    )
-                    Spacer(modifier = Modifier.height(30.dp))
-                    Button (
-                        modifier = Modifier.fillMaxWidth(fraction = 1f)
-                            .padding(all = 25.dp),
-                        onClick = OnSubmitBtnClick
-                    ) {
-                        Text(stringResource(id = "Submit"))
+                        Text(text = item)
                     }
                 }
+            }
+
+            // 3. Garis Pembatas
+            HorizontalDivider(
+                modifier = Modifier
+                    .padding(vertical = 20.dp)
+                    .width(280.dp),
+                thickness = 1.dp,
+                color = Color.Gray
+            )
+
+            // 4. Input Alamat (Sudah dikeluarkan dari perulangan)
+            OutlinedTextField(
+                value = "",
+                onValueChange = {},
+                singleLine = true,
+                modifier = Modifier.width(280.dp),
+                label = { Text(text = "Alamat") }
+            )
+
+            Spacer(modifier = Modifier.height(40.dp))
+
+            // 5. Tombol Submit (Sudah dikeluarkan dari perulangan)
+            Button(
+                modifier = Modifier
+                    .width(280.dp)
+                    .height(50.dp),
+                onClick = OnSubmitBtnClick
+            ) {
+                Text(text = "Submit")
             }
         }
     }
