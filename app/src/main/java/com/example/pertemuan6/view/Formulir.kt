@@ -3,9 +3,13 @@ package com.example.pertemuan6.view
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.material3.Button
 import androidx.compose.material3.DividerDefaults.Thickness
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
@@ -20,6 +24,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.example.pertemuan6.R
 
@@ -27,7 +32,7 @@ import com.example.pertemuan6.R
 @Composable
 fun FormIsian(
     jenisK: List<String> = listOf("Laki-laki", "Perempuan"),
-    onSubmitBtnClick: () -> Unit
+    OnSubmitBtnClick: () -> Unit
 ) {
     Scaffold(
         modifier = Modifier.fillMaxSize(),
@@ -83,6 +88,14 @@ fun FormIsian(
                         label = {Text(text = "Alamat")},
                         onValueChange = {},
                     )
+                    Spacer(modifier = Modifier.height(30.dp))
+                    Button (
+                        modifier = Modifier.fillMaxWidth(fraction = 1f)
+                            .padding(all = 25.dp),
+                        onClick = OnSubmitBtnClick
+                    ) {
+                        Text(stringResource(id = "Submit"))
+                    }
                 }
             }
         }
